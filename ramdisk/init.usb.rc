@@ -1,0 +1,64 @@
+# Used to disable USB when switching states
+on property:sys.usb.config=none
+    exec /system/bin/netcfg usb0 down
+    # stop adbd
+    write /sys/devices/virtual/usb_composite/accessory/enable 0
+    write /sys/devices/virtual/usb_composite/adb/enable 0
+    write /sys/devices/virtual/usb_composite/ether/enable 0
+    write /sys/devices/virtual/usb_composite/mtp/enable 0
+    write /sys/devices/virtual/usb_composite/usb_mass_storage/enable 0
+    write /sys/devices/virtual/usb_composite/cdc_ethernet/enable 0
+    write /sys/devices/virtual/usb_composite/diag/enable 0
+    write /sys/devices/virtual/usb_composite/modem/enable 0
+    write /sys/devices/virtual/usb_composite/serial/enable 0
+    write /sys/devices/virtual/usb_composite/projector/enable 0
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=adb
+    write /sys/class/usb_composite/adb/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=mass_storage,adb
+    write /sys/class/usb_composite/adb/enable 1
+    write /sys/class/usb_composite/usb_mass_storage/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=mass_storage
+    write /sys/class/usb_composite/usb_mass_storage/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=rndis
+    exec /system/bin/netcfg usb0 up
+    write /sys/class/usb_composite/rndis/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=rndis,adb
+    exec /system/bin/netcfg usb0 up
+    write /sys/class/usb_composite/rndis/enable 1
+    write /sys/class/usb_composite/adb/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=mtp
+    write /sys/class/usb_composite/mtp/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=mtp,adb
+    write /sys/class/usb_composite/mtp/enable 1
+    write /sys/class/usb_composite/adb/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+
+on property:sys.usb.config=ptp
+    write /sys/class/usb_composite/cdc_ethernet/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=ptp,adb
+    write /sys/class/usb_composite/cdc_ethernet/enable 1
+    write /sys/class/usb_composite/adb/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+

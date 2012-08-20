@@ -1,0 +1,6 @@
+flyer-keypad-v0.kl
+added to top:
+
+key 102   HOME              WAKE_DROPPED
+key 139   MENU              WAKE_DROPPED
+key 158   BACK              WAKE_DROPPED
