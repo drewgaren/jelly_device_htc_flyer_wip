@@ -204,7 +204,6 @@ PRODUCT_COPY_FILES += \
 
 # Audio DSP Profiles
 PRODUCT_COPY_FILES += \
-	device/htc/flyer/dsp/Sound_SPK_DUALMIC.txt:system/etc/Sound_SPK_DUALMIC.txt \
     device/htc/flyer/dsp/AdieHWCodec.csv:system/etc/AdieHWCodec.csv \
     device/htc/flyer/dsp/AIC3254_REG_DualMic.csv:system/etc/AIC3254_REG_DualMic.csv \
     device/htc/flyer/dsp/AIC3254_REG_DualMic.txt:system/etc/AIC3254_REG_DualMic.txt \
