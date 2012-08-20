@@ -1,0 +1,8 @@
+[
+ {
+    "remote": "git://github.com/drewgaren/",
+    "repository": "drewgaren/DexterJB-FlyerKernel.git",
+    "target_path": "kernel/htc/flyer",
+    "branch": "JB"
+ }
+]
