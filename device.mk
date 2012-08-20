@@ -60,7 +60,7 @@ PRODUCT_PACKAGES += \
 
 # icu files
 PRODUCT_COPY_FILES += \
-    device/htc/flyer/prebuilt/usr/idc/icudt48l.dat:system/usr/idc/icudt48l.dat 
+    device/htc/flyer/prebuilt/usr/icu/icudt48l.dat:system/usr/icu/icudt48l.dat 
     
 # idc files
 PRODUCT_COPY_FILES += \
