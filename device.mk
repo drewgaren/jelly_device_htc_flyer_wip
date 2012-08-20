@@ -24,8 +24,7 @@ PRODUCT_COPY_FILES += device/htc/flyer/gps.conf:system/etc/gps.conf
 ## (1) First, the most specific values, i.e. the aspects that are specific to GSM
 
 PRODUCT_COPY_FILES += \
-	device/htc/flyer/ramdisk/init.flyer.rc:root/init.flyer.rc \
-    device/htc/flyer/ramdisk/init.flyer.usb.rc:root/init.flyer.usb.rc \
+    device/htc/flyer/ramdisk/init.flyer.rc:root/init.flyer.rc \
     device/htc/flyer/ramdisk/ueventd.flyer.rc:root/ueventd.flyer.rc
 
 PRODUCT_COPY_FILES += \
