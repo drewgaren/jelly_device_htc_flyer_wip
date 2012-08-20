@@ -22,5 +22,6 @@
 
 add_lunch_combo cm_flyer-userdebug
 add_lunch_combo cm_flyer-eng
+add_lunch_combo ev_flyer-eng
 add_lunch_combo full_flyer-userdebug
 add_lunch_combo full_flyer-eng
