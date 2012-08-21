@@ -1,7 +1,10 @@
-Device configuration for the HTC Ace (aka Desire HD aka Inspire 4g)
+Device configuration for the HTC FLYER
 
-Copyright (C) 2012 Kevin Davis <dumbandroid@gmail.com>
-Parts Copyright (C) 2012 The CyanogenMod Project
+Open Source 2012 by Drew Garen <drewg29@gmail.com>
+Parts by Copyright (C) 2012 The CyanogenMod Project
+Evervolv Flyer Device Files by Drew Garen 
+
+Please submit patches and fixes to drewgaren.com/review (site down for time being)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
