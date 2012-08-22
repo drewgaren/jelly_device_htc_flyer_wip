@@ -21,6 +21,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 PRODUCT_COPY_FILES += device/htc/flyer/gps.conf:system/etc/gps.conf
 
+# Inherit qcom proprietary blobs
+$(call inherit-product, vendor/qcom/proprietary/qcom-vendor.mk)
+
 ## (1) First, the most specific values, i.e. the aspects that are specific to GSM
 
 PRODUCT_COPY_FILES += \
@@ -173,9 +176,9 @@ PRODUCT_COPY_FILES += \
 
 # HW
 #PRODUCT_COPY_FILES += \
-#    device/htc/flyer/prebuilt/hw/audio.primary.msm7x30.so:system/lib/hw/audio.primary.msm7x30.so
-#    device/htc/flyer/prebuilt/hw/copybit.msm7x30.so:system/lib/hw/copybit.msm7x30.so
-#    device/htc/flyer/prebuilt/hw/camera.msm7x30.so:system/lib/hw/camera.msm7x30.so 
+   device/htc/flyer/prebuilt/hw/audio.primary.msm7x30.so:system/lib/hw/audio.primary.msm7x30.so \
+    device/htc/flyer/prebuilt/hw/copybit.msm7x30.so:system/lib/hw/copybit.msm7x30.so \
+  device/htc/flyer/prebuilt/hw/camera.msm7x30.so:system/lib/hw/camera.msm7x30.so 
 
 
 # Keylayouts
@@ -237,17 +240,25 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/flyer/vold.fstab:system/etc/vold.fstab
 
-#PRODUCT_COPY_FILES += \
-#    device/htc/flyer/prebuilt/lib/libcamera.so:obj/lib/libcamera.so \
-#    device/htc/flyer/prebuilt/hw/camera.msm7x30.so:obj/lib/camera.msm7x30.so
+PRODUCT_COPY_FILES += \
+    device/htc/flyer/prebuilt/lib/libcamera.so:obj/lib/libcamera.so \
+    device/htc/flyer/prebuilt/hw/camera.msm7x30.so:obj/lib/camera.msm7x30.so
 
 # media config xml file
 PRODUCT_COPY_FILES += \
     device/htc/flyer/media_profiles.xml:system/etc/media_profiles.xml
 
+# Kernel
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := device/htc/flyer/kernel/zImage
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
+
 # Kernel modules
 PRODUCT_COPY_FILES += \
-    device/htc/flyer/prebuilt/bcmdhd.ko:system/lib/modules/bcmdhd.ko
+    device/htc/flyer/kernel/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko 
+endif
 
 #wireless firmware copy it manually because bcmdhd for bcm4329 isn't working right
 PRODUCT_COPY_FILES += \
@@ -277,20 +288,8 @@ PRODUCT_COPY_FILES += \
     device/htc/flyer/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
     device/htc/flyer/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw 
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := device/htc/flyer/prebuilt/kernel
-else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
-
 PRODUCT_COPY_FILES += \
     device/htc/flyer/prebuilt/libaudioalsa.so:obj/lib/libaudioalsa.so
-
-# stuff common to all HTC phones
-#$(call inherit-product, device/htc/common/common.mk)
 
 $(call inherit-product, build/target/product/full_base.mk)
 
